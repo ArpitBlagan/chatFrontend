@@ -10,7 +10,7 @@ const Navbar = () => {
   const handleL=async(event:React.MouseEvent<HTMLButtonElement>)=>{
     event.preventDefault();
     try{
-    const res=await axios.get(`http://localhost:3006/logout`,{withCredentials:true});
+    const res=await axios.get(`https://chat-backend-wvub.onrender.com/logout`,{withCredentials:true});
     if(res.data.message=="done"){
       navigate("/login");
     }}
