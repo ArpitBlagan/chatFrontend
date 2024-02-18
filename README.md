@@ -1,5 +1,13 @@
 # React + TypeScript + Vite
 
+
+#steps to run it locally
+- clone the repo
+- open in any IDE
+- run "npm install" in terminal
+- to start locally run "npm run dev"
+
+  
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
