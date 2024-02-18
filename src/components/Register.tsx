@@ -5,9 +5,11 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { registerSchema } from '../schemas';
+import { useState } from 'react';
 type user=z.infer<typeof registerSchema>;
 const Register = () => {
     const navigate=useNavigate();
+    const [disable,setD]=useState(false);
     const {register,handleSubmit,formState:{errors}}=useForm<user>(
         {resolver:zodResolver(registerSchema)}
     )
@@ -20,9 +22,10 @@ const Register = () => {
             password:data.password,
         }
         try{
+            setD(true);
         const res=await axios.post('https://chat-backend-wvub.onrender.com/register',dd,{withCredentials:true});
-        console.log(res.data);toast("created user");navigate("/login");}
-        catch(err){console.log(err);}
+        console.log(res.data);setD(false);toast("created user");navigate("/login");}
+        catch(err){setD(false);toast("something went wrong");console.log(err);}
       }
   return (
     <div className='flex justify-center items-center mt-[15%] '>
@@ -70,7 +73,8 @@ const Register = () => {
             } 
             </div>
             <div className='flex justify-center py-3'>
-            <button type="submit" className='bg-violet-500 px-4 py-2 rounded-md'>Register</button>
+            <button type="submit" disabled={disable} className='bg-violet-500 px-4 py-2 rounded-md'>
+            {disable?"Loading":"Register"}</button>
             </div>
             <div className='text-center'>
                 <h1>

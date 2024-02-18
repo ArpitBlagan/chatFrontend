@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { context } from '../ContextP';
 import { useForm , SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,6 +9,7 @@ import axios from 'axios';
 import { loginSchema } from '../schemas';
 type user=z.infer<typeof loginSchema>;
 const Login = () => {
+    const [disabel,setD]=useState(false);
     const navigate=useNavigate();
     const value=useContext(context);
     const {register,handleSubmit,formState:{errors}}=useForm<user>(
@@ -19,16 +20,17 @@ const Login = () => {
         const dd:user={
             number:data.number,
             password:data.password,
-        }
+        };
+        setD(true);
         try{
         const res=await axios.post('https://chat-backend-wvub.onrender.com/login',dd,{withCredentials:true});
-        console.log(res.data);toast("created user");
+        console.log(res.data);toast("created user");setD(false);
         if(value){
         value.setU({
             name:res.data.name,email:res.data.email,number:res.data.number,
         })}
         navigate("/");}
-        catch(err){console.log(err);}
+        catch(err){setD(false);toast("something went wrong");console.log(err);}
       }
   return (
     <div className='flex justify-center items-center mt-[20%]'>
@@ -56,7 +58,9 @@ const Login = () => {
             } 
             </div>
             <div className='flex justify-center py-3'>
-            <button type="submit" className='bg-violet-500 px-4 py-2 rounded-md'>Login</button>
+            <button type="submit" disabled={disabel} className='bg-violet-500 px-4 py-2 rounded-md'>
+                {disabel?"Loading":"Login"}
+            </button>
             </div>
             <div className='text-center'>
                 <h1>
