@@ -14,10 +14,11 @@ const TextArea = ({selected,number,socket}:{selected:any,number:string,socket:We
         }
       };
     const getChat=async()=>{
-        const res=await axios.get(`http://localhost:3006/chat/:${number}/:${selected.number}`,
+        const res=await axios.get(`https://chat-backend-wvub.onrender.com/chat/:${number}/:${selected.number}`,
         {withCredentials:true});
         console.log(res.data);
         if(res.data[0]){setM(res.data[0].messages);}
+        else{setM([]);}
     }
     useEffect(()=>{
         scrollToBottom();

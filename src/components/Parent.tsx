@@ -2,13 +2,13 @@ import { useState , useEffect } from 'react';
 import Users from './Users';
 import TextArea from './TextArea';
 interface sele{
-    name:string,number:string,email:string,avatar_id:string
+    name:string,number:string,email:string
   }
 const Parent = ({user}:{user:sele}) => {
     const [selected,setS]=useState<sele|null>(null);
     const [socket,setSocket]=useState<WebSocket|null>(null);
     useEffect(()=>{
-        const sock=new WebSocket(`ws://localhost:3006?number=${user.number}`);
+        const sock=new WebSocket(`wss://chat-backend-wvub.onrender.com?number=${user.number}`);
         sock.onopen=()=>{
           const ff:{message:string}={
             message:"connected"

@@ -5,7 +5,6 @@ interface User{
     name:string;
     email:string;
     number:string;
-    id:number
 }
 export const context=createContext<{
     user: User;
@@ -16,17 +15,15 @@ const ContextP:React.FC<any>=({children})=>{
     const [user,setU]=useState({
         name:"",
         email:"",
-        number:"",
-        id:0
+        number:""
     }); 
     const check=async()=>{
         try{
-            const res=await axios.get('http://localhost:3006/loggedIn',
+            const res=await axios.get('https://chat-backend-wvub.onrender.com/loggedIn',
                 {withCredentials:true}
             );console.log(res.data);
-            const id=Math.floor(Math.random()*100)+1;
             const val={
-                email:res.data.email,name:res.data.name,number:res.data.number,id
+                email:res.data.email,name:res.data.name,number:res.data.number
             }
             setU(val);
             toast("welcome...")

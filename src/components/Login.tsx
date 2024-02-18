@@ -21,11 +21,11 @@ const Login = () => {
             password:data.password,
         }
         try{
-        const res=await axios.post('http://localhost:3006/login',dd,{withCredentials:true});
+        const res=await axios.post('https://chat-backend-wvub.onrender.com/login',dd,{withCredentials:true});
         console.log(res.data);toast("created user");
         if(value){
         value.setU({
-            name:res.data.name,email:res.data.email,number:res.data.number
+            name:res.data.name,email:res.data.email,number:res.data.number,
         })}
         navigate("/");}
         catch(err){console.log(err);}

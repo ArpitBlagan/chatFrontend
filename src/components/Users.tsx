@@ -13,7 +13,7 @@ const Users = ({selected,setS,socket}:props) => {
     if(value){
     console.log(value?.user.email);}
     const getData=async()=>{
-        const res=await axios.get("http://localhost:3006/users",
+        const res=await axios.get("https://chat-backend-wvub.onrender.com/users",
           {withCredentials:true});
         setD(res.data);
       }
@@ -43,13 +43,15 @@ const Users = ({selected,setS,socket}:props) => {
             }
           })
       },[]);
-      const handleC=(event:React.MouseEvent<HTMLDivElement>,ele:any)=>{
-        event.preventDefault();
+      useEffect(()=>{
         const val=newText;
         const nn=val.map((elee)=>{
-          if(elee.from==ele.number){elee.seen=false;}
+          if(elee.from==selected.number){elee.seen=false;}
           return elee;
         });setNt(nn);
+      },[selected]);
+      const handleC=(event:React.MouseEvent<HTMLDivElement>,ele:any)=>{
+        event.preventDefault();
         setS(ele);
       }
   return (

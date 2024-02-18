@@ -20,7 +20,7 @@ const Register = () => {
             password:data.password,
         }
         try{
-        const res=await axios.post('http://localhost:3006/register',dd,{withCredentials:true});
+        const res=await axios.post('https://chat-backend-wvub.onrender.com/register',dd,{withCredentials:true});
         console.log(res.data);toast("created user");navigate("/login");}
         catch(err){console.log(err);}
       }
