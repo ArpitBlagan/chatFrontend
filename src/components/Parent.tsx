@@ -24,7 +24,7 @@ const Parent = ({user}:{user:sele}) => {
 
           }
           else if(response.type="message"){
-
+            
           }
         });setSocket(sock);
     },[])

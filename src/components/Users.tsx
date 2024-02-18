@@ -74,7 +74,7 @@ const Users = ({selected,setS,socket}:props) => {
             <p>{ele.number}</p>
               {ele.email==value?.user?.email&&<p className="underline font-light">YOU</p>}
             </div>
-            {newMessage&&<p>"newText..."</p>}
+            {newMessage&&<p className="text-md font-semib">*newText...*</p>}
           </div>
         })}
     </div>
