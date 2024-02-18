@@ -12,7 +12,11 @@ const Navbar = () => {
     try{
     const res=await axios.get(`https://chat-backend-wvub.onrender.com/logout`,{withCredentials:true});
     if(res.data.message=="done"){
-      navigate("/login");
+      navigate("/login");value?.setU({
+        name:"",
+        email:"",
+        number:""
+    })
     }}
     catch(err){
       toast("something went wrong try agian");
