@@ -63,7 +63,7 @@ const Users = ({selected,setS,socket}:props) => {
               return;
           });
           return <div key={index} className={`flex flex-col w-full gap-2 py-2 px-5 border-[2px]
-           border-violet-300 rounded cursor-pointer hover:px-7 bg-violet-${selected?.email==ele.email&&"500"}`}
+           border-violet-300 rounded cursor-pointer hover:px-7 bg-violet-${selected?.email==ele.email&&"500"} overflow-y-auto overflow-hidden`}
             onClick={(e)=>{handleC(e,ele)}}
            >
             <div className="flex justify-between">
